@@ -6,9 +6,11 @@ const passport = require('passport');
 // Bring in User Model
 let User = require('../models/user');
 
+const subfolder = 'registration/';
+
 // Register Form
 router.get('/register', function(req, res){
-  res.render('register');
+  res.render(subfolder + 'register');
 });
 
 // Register Proccess
@@ -29,7 +31,7 @@ router.post('/register', function(req, res){
   let errors = req.validationErrors();
 
   if(errors){
-    res.render('register', {
+    res.render(subfolder + 'register', {
       errors:errors
     });
   } else {
@@ -62,7 +64,7 @@ router.post('/register', function(req, res){
 
 // Login Form
 router.get('/login', function(req, res){
-  res.render('login');
+  res.render(subfolder + 'login');
 });
 
 // Login Process

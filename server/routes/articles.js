@@ -6,9 +6,11 @@ let Article = require('../models/article');
 // User Model
 let User = require('../models/user');
 
+const subfolder = 'articles/';
+
 // Add Route
 router.get('/add', ensureAuthenticated, function(req, res){
-  res.render('add_article', {
+  res.render('articles/add_article', {
     title:'Add Article'
   });
 });
@@ -23,7 +25,7 @@ router.post('/add', function(req, res){
   let errors = req.validationErrors();
 
   if(errors){
-    res.render('add_article', {
+    res.render(subfolder + 'add_article', {
       title:'Add Article',
       errors:errors
     });
@@ -52,7 +54,7 @@ router.get('/edit/:id', ensureAuthenticated, function(req, res){
       req.flash('danger', 'Not Authorized');
       res.redirect('/');
     }
-    res.render('edit_article', {
+    res.render(subfolder + 'edit_article', {
       title:'Edit Article',
       article:article
     });
@@ -105,7 +107,7 @@ router.delete('/:id', function(req, res){
 router.get('/:id', function(req, res){
   Article.findById(req.params.id, function(err, article){
     User.findById(article.author, function(err, user){
-      res.render('article', {
+      res.render(subfolder + 'article', {
         article:article,
         author: user.name
       });
