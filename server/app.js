@@ -28,7 +28,7 @@ const app = express();
 let Article = require('./models/article');
 
 // Load View Engine
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../client/views'));
 app.set('view engine', 'pug');
 
 // Body Parser Middleware
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Set Public Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Express Session Middleware
 app.use(session({

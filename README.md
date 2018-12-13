@@ -27,3 +27,9 @@ Run app
 ```sh
 $ npm start
 ```
+
+### Addition respect the original
+
+- some style
+- added numeration in items' list
+- client and server folders
