@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Knowledgebase
+    title NodeJS Server
     link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
     link(rel='stylesheet' href='/css/style.css')
   body
@@ -13,7 +13,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='/') KnowledgeBase
+          a.navbar-brand(href='/') NodeJS-Server
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
@@ -23,7 +23,7 @@ html
                 a(href='/articles/add') Add Article
           ul.nav.navbar-nav.navbar-right
             if user
-              li 
+              li
                 a(href='/users/logout') Logout
             else
               li
@@ -40,6 +40,6 @@ html
       hr
       footer
         p Copyright &copy; 2017
-    script(src='/bower_components/jquery/dist/jquery.js')  
+    script(src='/bower_components/jquery/dist/jquery.js')
     script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
-    script(src='/js/main.js')  
+    script(src='/js/main.js')
