@@ -8,9 +8,24 @@ let User = require('../models/user');
 
 const subfolder = 'articles/';
 
+
+// MyArticles Route
+router.get('/myarticles', ensureAuthenticated, function(req, res){
+  Article.find({author: req.user._id}, function(err, articles){
+    if(err){
+      console.log(err);
+    } else {
+      res.render('index', {
+        title:'My Articles',
+        articles: articles
+      });
+    }
+  });
+});
+
 // Add Route
 router.get('/add', ensureAuthenticated, function(req, res){
-  res.render('articles/add_article', {
+  res.render(subfolder + 'add_article', {
     title:'Add Article'
   });
 });

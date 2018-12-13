@@ -7,7 +7,7 @@ html
   body
     include subcomponents/navbar.pug
     .container
-      != messages('message', locals)
+      != messages('/subcomponents/message', locals)
       if errors
         each error, i in errors
           div(class="alert alert-danger") #{error.msg}

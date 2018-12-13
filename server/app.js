@@ -48,7 +48,8 @@ app.use(session({
 }));
 
 // Express Messages Middleware
-app.use(require('connect-flash')());
+// app.use(require('connect-flash')());
+app.use(flash());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
@@ -90,7 +91,7 @@ app.get('/', function(req, res){
       console.log(err);
     } else {
       res.render('index', {
-        title:'Articles',
+        title:'All Users\' Articles',
         articles: articles
       });
     }

@@ -19,7 +19,6 @@ router.post('/register', function(req, res){
   const email = req.body.email;
   const username = req.body.username;
   const password = req.body.password;
-  const password2 = req.body.password2;
 
   req.checkBody('name', 'Name is required').notEmpty();
   req.checkBody('email', 'Email is required').notEmpty();
@@ -64,16 +63,35 @@ router.post('/register', function(req, res){
 
 // Login Form
 router.get('/login', function(req, res){
-  res.render(subfolder + 'login');
+  if (req.flash('error').length > 0) {
+    //TODO: view messages in this case does not work
+    res.redirect('/users/login', req.flash('error'));
+  } else {
+    res.render(subfolder + 'login');
+  }
+
 });
 
 // Login Process
 router.post('/login', function(req, res, next){
-  passport.authenticate('local', {
-    successRedirect:'/',
-    failureRedirect:'/users/login',
-    failureFlash: true
-  })(req, res, next);
+  req.checkBody('username', 'Username is required').notEmpty();
+  req.checkBody('password', 'Password is required').notEmpty();
+
+  let errors = req.validationErrors();
+
+  if(errors){
+    res.render(subfolder + 'login', {
+      errors:errors
+    });
+  } else {
+    passport.authenticate('local', {
+      successRedirect:'/',
+      failureRedirect:'/users/login',
+      failureFlash: true
+    })(req, res, next);
+
+    console.log(req.getValidationResult());
+  }
 });
 
 // logout
